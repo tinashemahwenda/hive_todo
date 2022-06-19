@@ -23,6 +23,15 @@ class Main extends StatefulWidget {
 class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('My Tasks'),
+      ),
+      body: ValueListenableBuilder(valueListenable: taskBox.listenable(), builder: (BuildContext context, Box<String> value, Widget child){
+        if(taskBox.length>0){
+          return ListView.separated(itemBuilder: itemBuilder, separatorBuilder: separatorBuilder, itemCount: itemCount,)
+        }
+      }),
+    );
   }
 }
